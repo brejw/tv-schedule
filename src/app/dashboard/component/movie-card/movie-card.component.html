@@ -1,0 +1,19 @@
+<mat-card class="episode-card">
+    <mat-card-header>
+        <mat-card-title>{{episode.show.name}}</mat-card-title>
+        <mat-card-subtitle>{{episode.name}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image [src]="episode.image" alt="{{episode.show.name}}">
+    <mat-card-content>
+        <p class="episode-card__content" [innerHTML]="episode.summary"></p>
+        <span>On Air: {{ episode.airtime }}</span>
+    </mat-card-content>
+    <mat-card-actions class="episode-card__footer">
+        <mat-chip-list aria-label="Fish selection">
+            <mat-chip color="primary" selected>S{{ episode.season | number:"2.0" }}E{{ episode.number | number:"2.0" }}</mat-chip>
+        </mat-chip-list>
+        <button mat-icon-button>
+            <mat-icon (click)="showRedirect()">pageview_outline</mat-icon>
+        </button>
+    </mat-card-actions>
+</mat-card>

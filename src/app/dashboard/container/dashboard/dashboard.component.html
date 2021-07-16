@@ -1,0 +1,46 @@
+<mat-toolbar class="example-header">ShowsExplorer</mat-toolbar>
+
+<mat-sidenav-container class="page__wrapper">
+    <mat-sidenav mode="side" opened class="sidenav">
+        <form [formGroup]="filter" class="filter">
+            <mat-form-field class="filter__date">
+                <mat-label>Choose date:</mat-label>
+                <input matInput formControlName="date" [matDatepicker]="picker">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <div formArrayName="genres" class="filter__genres">
+
+            <mat-label>Genres:</mat-label>
+                <ng-container *ngIf="filterGenres.controls.length > 0; else noItems">
+                    <ng-container *ngFor="let genre of filterGenres.controls; let i = index">
+                        <mat-slide-toggle formControlName="{{i}}">
+                            <mat-label>{{genresTitles[i]}}</mat-label>
+                        </mat-slide-toggle>
+                    </ng-container>
+                </ng-container>
+            </div>
+        </form>
+
+    </mat-sidenav>
+    <mat-sidenav-content class="page__content">
+        <ng-container *ngIf="filtered$ | async as filtered; else loading">
+            <ng-container *ngIf="filtered.length; else noItems">
+                <section class="episodes">
+                    <ng-container *ngFor="let episode of filtered">
+                        <app-movie-card
+                                [episode]="episode"
+                                (goToEpisode)="redirectToEpisodeDetails($event)"
+                        ></app-movie-card>
+                    </ng-container>
+                </section>
+            </ng-container>
+        </ng-container>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+<ng-template #noItems>No Items!</ng-template>
+<ng-template #loading>
+    <mat-spinner></mat-spinner>
+</ng-template>

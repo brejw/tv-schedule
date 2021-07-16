@@ -1,0 +1,40 @@
+.page {
+    &__wrapper {
+        position: absolute;
+        top: 64px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #eee;
+    }
+
+    &__content {
+        padding: 0 15px;
+        width: calc(100% - 250px);
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+}
+
+.sidenav {
+    width: 250px;
+    padding: 30px 15px;
+}
+
+.filter {
+    position: sticky;
+
+    &__date {}
+    &__genres {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.episodes {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    grid-gap: 10px;
+    justify-items: center;
+}

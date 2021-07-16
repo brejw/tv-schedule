@@ -1,0 +1,49 @@
+<mat-toolbar class="example-header">{{show.name}}</mat-toolbar>
+<mat-drawer-container class="page__wrapper">
+    <mat-drawer mode="side" opened class="sidenav">
+        <mat-list role="list">
+            <h3 matSubheader>Genre:</h3>
+            <ng-container *ngFor="let genre of show.genres">
+                <mat-list-item role="listitem">{{genre}}</mat-list-item>
+            </ng-container>
+        </mat-list>
+    </mat-drawer>
+    <mat-drawer-content class="page__content">
+        <section class="show__description">
+            <header class="show__description__header">
+                <h2>Description</h2>
+            </header>
+            <figure class="show__description__poster">
+                <img [src]="show.image" alt="{{show.name}}-poster">
+            </figure>
+            <p class="show__description__summary" [innerHTML]="show.summary"></p>
+        </section>
+
+        <section class="show__cast">
+            <header>
+                <h3>Cast:</h3>
+            </header>
+            <div class="section__content section__content-small">
+                <ng-container *ngFor="let member of cast">
+                    <mat-card class="cast__card">
+                        <mat-card-header>
+                            <mat-card-title>{{member.character.name}}</mat-card-title>
+                            <mat-card-subtitle>{{member.person.name}}</mat-card-subtitle>
+                        </mat-card-header>
+                        <img mat-card-image [src]="member.person.image" [alt]="member.person.name">
+                    </mat-card>
+                </ng-container>
+            </div>
+        </section>
+        <section class="show__episodes">
+            <header>
+                <h3>Cast:</h3>
+            </header>
+            <div class="section__content">
+                <ng-container *ngFor="let episode of episodes">
+                    <app-episode-card [episode]="episode"></app-episode-card>
+                </ng-container>
+            </div>
+        </section>
+    </mat-drawer-content>
+</mat-drawer-container>

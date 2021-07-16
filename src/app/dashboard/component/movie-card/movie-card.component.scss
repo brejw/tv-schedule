@@ -1,0 +1,24 @@
+:host {
+    display: block;
+}
+
+.episode-card {
+    ::ng-deep {
+        .mat-card-header-text {
+            margin: 0;
+        }
+    }
+    &__content {
+        margin: 0 0 1em 0;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+    }
+
+    &__footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
